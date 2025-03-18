@@ -1,0 +1,25 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+double newton_method(double x0, double tol = 1e-6, int max_iter = 100) {
+    double x = x0;
+    for (int i = 0; i < max_iter; ++i) {
+        double f_x = x*x - 3*x + 2;
+        double df_x = 2*x - 3;
+        if (fabs(df_x) < tol) return -1;
+        double new_x = x - f_x / df_x;
+        if (fabs(new_x - x) < tol) return new_x;
+        x = new_x;
+    }
+    return x;
+}
+
+int main() {
+    double x0 = 0.5;
+    double root = newton_method(x0);
+    if (root != -1)
+        cout << "Корень уравнения методом Ньютона: " << root << endl;
+    return 0;
+}
