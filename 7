@@ -1,0 +1,20 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+double iteration_method(double x0, double tol = 1e-6, int max_iter = 100) {
+    double x = x0;
+    for (int i = 0; i < max_iter; ++i) {
+        double new_x = 2 + 1 / x;
+        if (fabs(new_x - x) < tol) return new_x;
+        x = new_x;
+    }
+    return x;
+}
+
+int main() {
+    double root = iteration_method(1.5);
+    cout << "Корень уравнения методом итерации: " << root << endl;
+    return 0;
+}
